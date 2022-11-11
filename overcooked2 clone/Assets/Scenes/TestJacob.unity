@@ -308,8 +308,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {x: 0, y: 0}
   movementSpeed: 0.8
+
+  rigidbody: {fileID: 1902157313}
+=======
   rigidbodyPlayer: {fileID: 1902157313}
   currentHolding: {fileID: 0}
+
 --- !u!50 &1902157313
 Rigidbody2D:
   serializedVersion: 4
@@ -468,6 +472,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+=======
 --- !u!1001 &5740198746279272140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -525,3 +531,4 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad0cb56395bdd48f0b31234c0fbbc108, type: 3}
+
