@@ -4,32 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
-    public Vector2 movement;
-    public float movementSpeed;
-    public Rigidbody2D rigidbody;
-    void Start()
-    {
-        
-    }
-
-    #region Movement Code
-    void Update()
-    {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-    }
-    private void FixedUpdate()
-    {
-        rigidbody.MovePosition(rigidbody.position + movement * movementSpeed);
-    }
-    #endregion
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Interactable")
-        {
-            //Change State to that action
-=======
     #region Initial Variables
     public Vector2 movement; //Track Movement of Player
     public float movementSpeed; //Determine movement speed
@@ -50,7 +24,6 @@ public class PlayerController : MonoBehaviour
     public int framesReload = 30; //Wait for frames to reload before checking drop
     #endregion
 
-
     #region Input and Updates
     void Update()
     {
@@ -58,7 +31,6 @@ public class PlayerController : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical"); //Get vertical input
         isSpace = Input.GetKey(KeyCode.Space); //Get space bar input
         
-            
 
     }
 
@@ -102,7 +74,7 @@ public class PlayerController : MonoBehaviour
         
     }
 
-=======
+
     #endregion
 
 }
