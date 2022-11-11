@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement: {x: 0, y: 0}
-  movementSpeed: 0.1
+  movementSpeed: 0.8
   rigidbody: {fileID: 1902157313}
 --- !u!50 &1902157313
 Rigidbody2D:
@@ -324,7 +324,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
