@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal"); //Get horizontal input
         movement.y = Input.GetAxisRaw("Vertical"); //Get vertical input
-        movement.Normalize(); //Makes the Vector2 has a magnitude of 1
+        
 
         isSpace = Input.GetKey(KeyCode.Space); //Get space bar input
         
@@ -60,8 +60,6 @@ public class PlayerController : MonoBehaviour
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, movement);//facing direction is input direction
             rigidbodyPlayer.MoveRotation(toRotation);//rotate player via rigidbody
         }
-
-
 
     }
     #endregion
