@@ -6,7 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     #region Initial Variables
     public Vector2 movement; //Track Movement of Player
-    public float movementSpeed; //Determine movement speed
+
+    [SerializeField]private float movementSpeed; //Determine movement speed, serialized so can be changed directly in unity
+
     public Rigidbody2D rigidbodyPlayer; //RigidBody to move player
     public GameObject currentHolding; //What object is the player currently holding if any
     private enum Layers //Enum of all layer masks in scene
@@ -29,9 +31,11 @@ public class PlayerController : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal"); //Get horizontal input
         movement.y = Input.GetAxisRaw("Vertical"); //Get vertical input
-        isSpace = Input.GetKey(KeyCode.Space); //Get space bar input
         
 
+        isSpace = Input.GetKey(KeyCode.Space); //Get space bar input
+        
+        
     }
 
     private void FixedUpdate()
@@ -50,9 +54,16 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
         rigidbodyPlayer.MovePosition(rigidbodyPlayer.position + movement * movementSpeed); //Move player via rigidbody
+        
+        if(movement != Vector2.zero)//if we are moving
+        {
+            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, movement);//facing direction is input direction
+            rigidbodyPlayer.MoveRotation(toRotation);//rotate player via rigidbody
+        }
+
     }
     #endregion
-
+    
     #region Collision Pick Up Method
     private void OnCollisionStay2D(Collision2D collision)
     {

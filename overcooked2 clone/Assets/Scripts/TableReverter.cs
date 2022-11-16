@@ -23,7 +23,7 @@ public class TableReverter : MonoBehaviour
             Debug.Log("interacting");
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 0.30196078f, 0.30196078f);
         }
-    }
+    }*/
     public void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -31,5 +31,5 @@ public class TableReverter : MonoBehaviour
             Debug.Log("stop interacting");
             gameObject.GetComponent<SpriteRenderer>().color = original;
         }
-    }*/
+    }
 }
