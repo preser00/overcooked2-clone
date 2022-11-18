@@ -6,7 +6,9 @@ using TMPro;
 public class UIUpdater : MonoBehaviour
 {
     public TextMeshProUGUI textmesh;
-    public string displayType; //this script can be used for displaying score or timer text depending on this variable
+    public GameManager gm; 
+
+    public string displayType; //type: score, timer
 
     private void Start()
     {
@@ -19,11 +21,11 @@ public class UIUpdater : MonoBehaviour
         //commented for now until textmesh is set up 
         if(displayType == "score")
         {
-            //textmesh.text = GameManager.score;
+            //textmesh.text = gm.score.ToString();
         }
         else if(displayType == "timer")
         {
-            //textmesh.text = GameManager.timerDisplay; 
+            textmesh.text = gm.timerDisplay; 
         }
     }
 }
