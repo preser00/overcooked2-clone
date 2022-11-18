@@ -7,7 +7,10 @@ public class TableReverter : MonoBehaviour
     public Color original;
     public Color red = Color.red;
     public bool isSelectedPlayer;
+
+    public bool isOccupied = false;
     public SpriteRenderer spriteRenderer;
+    public GameObject content;
    
     // Start is called before the first frame update
     void Start()
@@ -28,22 +31,6 @@ public class TableReverter : MonoBehaviour
             spriteRenderer.color = original;
         }
     }
-    /*public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            Debug.Log("interacting");
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 0.30196078f, 0.30196078f);
-        }
-    }*/
-    /*
-    public void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            Debug.Log("stop interacting");
-            gameObject.GetComponent<SpriteRenderer>().color = original;
-        }
-    }
-    */
+    
+    
 }
