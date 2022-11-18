@@ -13,6 +13,7 @@ public class TableController : MonoBehaviour
     public GameObject plate; //plate template goes here
     
     private TableSelector _tableSelector; //player's table selector
+                                        //note this operates under assumption there's 1 player only 
 
     private void Start()
     {
@@ -34,7 +35,7 @@ public class TableController : MonoBehaviour
 
             if (tableType == "ingredient spawner")
             {
-                if (Input.GetKeyUp(KeyCode.Space)) //getkeyup so it doesn't spawn like 8
+                if (Input.GetKeyUp(KeyCode.Space)) //getkeyup so it doesn't spawn multiple ingredients
                 {
                     GameObject newIngredient = Instantiate(ingredient, transform.position + new Vector3(1, 1, 0), Quaternion.identity);
                     IngredientController newIngredientController = newIngredient.GetComponent<IngredientController>(); //get ingredient's IngredientController script
@@ -65,8 +66,7 @@ public class TableController : MonoBehaviour
             {
                 if(Input.GetKeyUp(KeyCode.Space) && currentPlayerController.currentHolding.layer == 7) //if player is holding an ingredient (layer = 7) & presses space
                 {
-                    //destroy ingredient
-                    Destroy(currentPlayerController.currentHolding); 
+                    Destroy(currentPlayerController.currentHolding); //destroy ingredient 
 
                 }
             }
