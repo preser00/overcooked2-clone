@@ -68,7 +68,8 @@ public class TableSelector : MonoBehaviour
             }
             if (currentReverter.isOccupied && playerController.currentHolding == null)
             {
-                if (playerController.isAlt)
+                IngredientController _currentIngredient = currentReverter.content.GetComponent<IngredientController>(); // get the ingredient controller of the current reverter
+                if (playerController.isAlt && ((_currentIngredient.choppiness== 0) || (_currentIngredient.done)))
                 {
                     playerController.currentHolding = currentReverter.content; //Set current holding to the table content
                     currentReverter.content = null; //reset the table content to null
@@ -77,6 +78,11 @@ public class TableSelector : MonoBehaviour
                     playerController.currentHolding.gameObject.GetComponent<IngredientController>().held = true; //Tell that collided object it is being held
                     playerController.currentHolding.gameObject.GetComponent<IngredientController>().master = gameObject; //Tell the collided object who is holding it
 
+                }
+                if(playerController.isCtrl && currentReverter.isCuttingBoard && !_currentIngredient.done)
+                {
+                    Debug.Log(_currentIngredient.choppiness);
+                    _currentIngredient.choppiness ++;
                 }
             }
         }

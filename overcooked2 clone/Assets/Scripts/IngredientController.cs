@@ -7,10 +7,14 @@ public class IngredientController : MonoBehaviour
     //  ATTRIBUTES  //
     public string ingredientName; //Name of the ingredient
     public bool held; //Is someone holding the ingredient?
+    public int choppiness = 0; // How chopped is this ingredient right now?
+    public bool done = false; //Is it finished chopping?
+
     public GameObject master; //Who is holding the object?
     public BoxCollider2D bc; // this box collider
+    public SpriteRenderer spriteRenderer; //this srpite renderer
     //public Rigidbody2D rb; // this rigid body
-    
+
     void Start()
     {
         
@@ -29,6 +33,12 @@ public class IngredientController : MonoBehaviour
         {
             bc.enabled = true;
             //rb.simulated = true;
+        }
+        if (choppiness >= 600)
+        {
+            Debug.Log("Chop completed!");
+            spriteRenderer.color = Color.blue;
+            done = true;
         }
     }
 

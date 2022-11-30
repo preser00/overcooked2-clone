@@ -6,9 +6,11 @@ public class TableReverter : MonoBehaviour
 {
     public Color original;
     public Color red = Color.red;
-    public bool isSelectedPlayer;
 
+    public bool isSelectedPlayer;
     public bool isOccupied = false;
+    public bool isCuttingBoard = false;
+
     public SpriteRenderer spriteRenderer;
     public GameObject content;
    

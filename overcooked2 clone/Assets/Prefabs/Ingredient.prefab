@@ -100,8 +100,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: 
   held: 0
+  choppiness: 0
+  done: 0
   master: {fileID: 0}
   bc: {fileID: -7103748354131498553}
+  spriteRenderer: {fileID: 2615975544758580480}
 --- !u!61 &-7103748354131498553
 BoxCollider2D:
   m_ObjectHideFlags: 0
