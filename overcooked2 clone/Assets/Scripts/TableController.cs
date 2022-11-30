@@ -64,9 +64,18 @@ public class TableController : MonoBehaviour
             }
             else if (tableType == "trash can")
             {
-                if(Input.GetKeyUp(KeyCode.Space) && currentPlayerController.currentHolding.layer == 7) //if player is holding an ingredient (layer = 7) & presses space
+                /*if(Input.GetKeyUp(KeyCode.Space) && currentPlayerController.currentHolding.layer == 7) //if player is holding an ingredient (layer = 7) & presses space
                 {
                     Destroy(currentPlayerController.currentHolding); //destroy ingredient 
+
+                }*/
+
+                TableReverter thisTableReverter = gameObject.GetComponent<TableReverter>();
+
+                if (thisTableReverter.isOccupied) //if object gets put "on this table", delete it 
+                {
+                    Destroy(thisTableReverter.content);
+                    thisTableReverter.isOccupied = false;
 
                 }
             }
