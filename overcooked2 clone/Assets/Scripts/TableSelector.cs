@@ -84,12 +84,14 @@ public class TableSelector : MonoBehaviour
         else
         { //No counters selected
 
-            currentReverter = TableSelected.GetComponent<TableReverter>();
+           
             currentReverter.isSelectedPlayer = false;
             TableSelected = null;
             isSelected = false;
         }
 
+        Debug.Log("isOccupied = " + currentReverter.isOccupied);
+        Debug.Log("currentHolding = " + playerController.currentHolding);
     }
 
 }
