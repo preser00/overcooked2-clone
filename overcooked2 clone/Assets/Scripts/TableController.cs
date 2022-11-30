@@ -22,7 +22,7 @@ public class TableController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(_tableSelector.TableSelected);
+        //Debug.Log(_tableSelector.TableSelected);
 
         OnSelection(); 
     }
