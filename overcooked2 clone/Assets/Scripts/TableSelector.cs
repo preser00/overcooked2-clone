@@ -7,9 +7,11 @@ public class TableSelector : MonoBehaviour
     //variable declaration
     public GameObject TableSelected; //the table that is selected
     public GameObject Player;
+    public PlayerController playerController;
     public CircleCollider2D circleCollider;
     public TableReverter currentReverter;
     
+
     public float distance;
     public Vector2 direction;
     public bool isCounter;
@@ -37,37 +39,13 @@ public class TableSelector : MonoBehaviour
 
         RayCast();
     }
-    /*
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Interactable" && !_OnlySelected)
-        {
-            Debug.Log("interacting");
-            _OnlySelected = true; //now can select only this table
-            TableSelected = collision.gameObject;//ordine selected table
-            TableSelected.GetComponent<SpriteRenderer>().color = new Color(1f, 0.30196078f, 0.30196078f); //change color to signify which table is selected
-            _SelectedReverter = TableSelected.GetComponent<TableReverter>(); //retrieve script of selected table
-        }
-    }
-    public void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject == TableSelected)//leaving selected table's vicinity
-        {
-            Debug.Log("stop interacting");
-            _OnlySelected = false;//now can select other table again
-        }
-    }
-    */
+    
     private void RayCast()
     {
         Vector2 lastDirection = direction;
      
         direction = Player.GetComponent<PlayerController>().toRotation * Vector3.up;
-        /*if (direction.x == 0 && direction.y == 0)
-        {
-            direction = lastDirection;
-        }*/
-        
+       
         RaycastHit2D hit = Physics2D.Raycast(circleCollider.bounds.center, direction, circleCollider.bounds.extents.y+offset, layerCounter);
         Debug.DrawRay(circleCollider.bounds.center , direction * ( circleCollider.bounds.extents.y+offset), Color.red);
         
@@ -88,7 +66,19 @@ public class TableSelector : MonoBehaviour
                 currentReverter.isSelectedPlayer = true;
                 isSelected = true;
             }
-            
+            if (currentReverter.isOccupied && playerController.currentHolding == null)
+            {
+                if (playerController.isAlt)
+                {
+                    playerController.currentHolding = currentReverter.content; //Set current holding to the table content
+                    currentReverter.content = null; //reset the table content to null
+                    currentReverter.isOccupied = false; //reset the table isOccupied to false
+
+                    playerController.currentHolding.gameObject.GetComponent<IngredientController>().held = true; //Tell that collided object it is being held
+                    playerController.currentHolding.gameObject.GetComponent<IngredientController>().master = gameObject; //Tell the collided object who is holding it
+
+                }
+            }
         }
         
         else

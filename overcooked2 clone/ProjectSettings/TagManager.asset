@@ -42,3 +42,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Tables
+    uniqueID: 3928797289
+    locked: 0
+  - name: Items
+    uniqueID: 1383955041
+    locked: 0
