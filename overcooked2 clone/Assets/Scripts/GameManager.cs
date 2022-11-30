@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour
     public bool timerRunning;
     public string timerDisplay;
 
-    public bool startOfGame; 
-
     //delivery streak timer
     public float streakTimeRemaining;
     public bool streakTimerRunning; 
@@ -20,8 +18,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         timeRemaining = 150f; //overcooked2 1-1 timer starts at 2:30
-        timerRunning = false;
-        startOfGame = true; 
+        timerRunning = true;
 
         streakTimerRunning = false; 
     }
@@ -30,14 +27,6 @@ public class GameManager : MonoBehaviour
     {
 
         #region Timer
-        if (startOfGame == true)
-        {
-            if (Input.GetKeyDown(KeyCode.Space)) //start timer on space (can be changed later, just for testing rn)
-            {
-                timerRunning = true;
-                startOfGame = false;
-            }
-        }
 
         if (timerRunning)
         {
@@ -52,6 +41,7 @@ public class GameManager : MonoBehaviour
             if(timeRemaining <= 0) 
             { 
                 timerRunning = false; //turn timer off once out of time
+                timerDisplay = "0:00"; 
             } 
         }
 
