@@ -75,12 +75,12 @@ SpriteRenderer:
   m_SortingLayerID: 1383955041
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.77331626, g: 0.2474635, b: 0.7830189, a: 1}
+  m_Sprite: {fileID: -408876947, guid: e3cb62e71d8e0ec49bff7b37f28cbccc, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.5, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -103,11 +103,18 @@ MonoBehaviour:
   held: 0
   choppiness: 0
   done: 0
+  firstChop: 1
   master: {fileID: 0}
   bc: {fileID: -7103748354131498553}
   spriteRenderer: {fileID: 2615975544758580480}
   ProgressBar: {fileID: 0}
   ProgressBarPreFab: {fileID: 4830795165596398960, guid: 0e992502863bc46f187d903dc7ae095d, type: 3}
+  sprites:
+  - {fileID: -408876947, guid: e3cb62e71d8e0ec49bff7b37f28cbccc, type: 3}
+  - {fileID: -365391734, guid: e3cb62e71d8e0ec49bff7b37f28cbccc, type: 3}
+  choppedSprites:
+  - {fileID: 1032522403, guid: e3cb62e71d8e0ec49bff7b37f28cbccc, type: 3}
+  - {fileID: 660872161, guid: e3cb62e71d8e0ec49bff7b37f28cbccc, type: 3}
 --- !u!61 &-7103748354131498553
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -125,8 +132,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 1.5, y: 1.5}
+    newSize: {x: 1.5, y: 1.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

@@ -19,7 +19,7 @@ public class RecipeController : MonoBehaviour
     public int inTimer = 0; //Track the overall game timer
     public bool ranOnce = false; //Sentinel var
 
-    private Vector3 ogSpawnPt = new Vector3(-15, 7, 0); //Where to start spawning from
+    private Vector3 ogSpawnPt = new Vector3(-16, 4.4f, -200); //Where to start spawning from
     public List<Vector3> spawnPoints = new List<Vector3>(); //List of spawn points down the row
 
     public int waitTime = 30;
@@ -27,9 +27,10 @@ public class RecipeController : MonoBehaviour
 
     private void Start()
     {
+
         for (int i = 0; i < maxNumTasks; i++)
         {
-            spawnPoints.Add(ogSpawnPt + new Vector3(3 * i, 7, 0)); //Set spacing between spawns
+            spawnPoints.Add(ogSpawnPt + new Vector3(3 * i, 4.4f, -200)); //Set spacing between spawns
             timers.Add(0); //Init
         }
         
