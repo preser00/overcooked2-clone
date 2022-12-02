@@ -2099,7 +2099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2da1745bdbfdff4ea76ddc4de86519b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tableType: 
+  tableType: cutting board
   ingredientSpawnerType: 
   ingredient: {fileID: 5592179886283556932, guid: ad0cb56395bdd48f0b31234c0fbbc108, type: 3}
   plate: {fileID: 0}
@@ -3082,6 +3082,9 @@ MonoBehaviour:
   playerController: {fileID: 1266877269}
   circleCollider: {fileID: 1266877267}
   currentReverter: {fileID: 0}
+  progressBarTester: {fileID: 0}
+  length: 3
+  firstCtrl: 1
   distance: 5
   direction: {x: 0, y: 0}
   isCounter: 0
