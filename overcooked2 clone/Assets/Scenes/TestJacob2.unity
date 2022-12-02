@@ -157,7 +157,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 48664768}
+  content: {fileID: 0}
 --- !u!61 &48664767
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -285,7 +287,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 57398135}
+  content: {fileID: 0}
 --- !u!61 &57398134
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -413,7 +417,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 118362515}
+  content: {fileID: 0}
 --- !u!61 &118362514
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -599,7 +605,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 188974946}
+  content: {fileID: 0}
 --- !u!61 &188974945
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -762,7 +770,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 193048197}
+  content: {fileID: 0}
 --- !u!61 &193048196
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -890,7 +900,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 197359409}
+  content: {fileID: 0}
 --- !u!61 &197359408
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1018,7 +1030,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 258084606}
+  content: {fileID: 0}
 --- !u!61 &258084605
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1146,7 +1160,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 317323290}
+  content: {fileID: 0}
 --- !u!61 &317323289
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1321,7 +1337,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 489916415}
+  content: {fileID: 0}
 --- !u!212 &489916415 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 5158896162808533293, guid: b9c72964557561d478d50e8a3af297c3, type: 3}
@@ -1361,7 +1379,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 542376658}
+  content: {fileID: 0}
 --- !u!61 &542376657
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1488,7 +1508,6 @@ MonoBehaviour:
   timeRemaining: 0
   timerRunning: 0
   timerDisplay: 
-  startOfGame: 0
   streakTimeRemaining: 0
   streakTimerRunning: 0
 --- !u!4 &557284315
@@ -1540,7 +1559,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 739732481}
+  content: {fileID: 0}
 --- !u!61 &739732480
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1668,7 +1689,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 741404746}
+  content: {fileID: 0}
 --- !u!61 &741404745
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1880,7 +1903,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 854796158}
+  content: {fileID: 0}
 --- !u!61 &854796157
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2008,7 +2033,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 916886527}
+  content: {fileID: 0}
 --- !u!61 &916886526
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2136,7 +2163,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 1063175659}
+  content: {fileID: 0}
 --- !u!61 &1063175658
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2348,7 +2377,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 1111055266}
+  content: {fileID: 0}
 --- !u!61 &1111055265
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2711,7 +2742,59 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 1195930402}
+  content: {fileID: 0}
+--- !u!1 &1253926561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1253926562}
+  - component: {fileID: 1253926563}
+  m_Layer: 0
+  m_Name: RecipeSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1253926562
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253926561}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.53883535, y: 0.48626605, z: -0.010951821}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1253926563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253926561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8e2e7baa25784a04918ae320a858e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timers: 00000000000000000000000000000000
+  currTasks: []
+  gm: {fileID: 557284313}
+  RecipePreFab: {fileID: 4381157681006388060, guid: bd0d93f0c514a47fe815af769fd6542b, type: 3}
+  ogSpawnPt: {x: -10, y: 5, z: 0}
+  transform: {fileID: 0}
 --- !u!1001 &1337049527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2873,7 +2956,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TableSelected: {fileID: 0}
   Player: {fileID: 0}
+  playerController: {fileID: 0}
   circleCollider: {fileID: 1353815325}
+  currentReverter: {fileID: 0}
   distance: 5
   direction: {x: 0, y: 0}
   isCounter: 0
@@ -2933,9 +3018,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {x: 0, y: 0}
   movementSpeed: 0.2
+  tableSelector: {fileID: 0}
   rigidbodyPlayer: {fileID: 1353815326}
   currentHolding: {fileID: 0}
+  finalRotation: {x: 0, y: 0, z: 0, w: 0}
+  toRotation: {x: 0, y: 0, z: 0, w: 0}
   isSpace: 0
+  isAlt: 0
   framesReload: 30
 --- !u!212 &1353815328
 SpriteRenderer:
@@ -3039,7 +3128,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 1357031721}
+  content: {fileID: 0}
 --- !u!61 &1357031720
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3167,7 +3258,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 1381624292}
+  content: {fileID: 0}
 --- !u!61 &1381624291
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3406,7 +3499,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 1579406504}
+  content: {fileID: 0}
 --- !u!61 &1579406503
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3534,7 +3629,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 1653649419}
+  content: {fileID: 0}
 --- !u!61 &1653649418
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3662,7 +3759,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 1655352151}
+  content: {fileID: 0}
 --- !u!61 &1655352150
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3790,7 +3889,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 1684268905}
+  content: {fileID: 0}
 --- !u!61 &1684268904
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3918,7 +4019,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 1771670067}
+  content: {fileID: 0}
 --- !u!61 &1771670066
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4268,7 +4371,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 1885403626}
+  content: {fileID: 0}
 --- !u!61 &1885403625
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4396,7 +4501,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 1897756361}
+  content: {fileID: 0}
 --- !u!61 &1897756360
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4524,7 +4631,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 1971239050}
+  content: {fileID: 0}
 --- !u!61 &1971239049
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4652,7 +4761,9 @@ MonoBehaviour:
   original: {r: 0, g: 0, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0, a: 1}
   isSelectedPlayer: 0
+  isOccupied: 0
   spriteRenderer: {fileID: 2072085696}
+  content: {fileID: 0}
 --- !u!61 &2072085695
 BoxCollider2D:
   m_ObjectHideFlags: 0
