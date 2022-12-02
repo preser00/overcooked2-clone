@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     }
     public bool isSpace; //Track whether space has been pressed
     public bool isAlt; //Track whether alt has been pressed
+    public bool isCtrl; //Track whether alt has been pressed
     public int framesReload = 30; //Wait for frames to reload before checking drop
     #endregion
     void Start()
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
         
         isSpace = Input.GetKey(KeyCode.Space); //Get space bar input
         isAlt = Input.GetKey(KeyCode.LeftAlt); //Get alt key input
+        isCtrl = Input.GetKey(KeyCode.LeftControl); //Get Ctrl key input
     }
     #endregion
     private void FixedUpdate()
@@ -53,6 +55,7 @@ public class PlayerController : MonoBehaviour
             framesReload = (framesReload > 0) ? --framesReload :  0; //Decrement frames
             if (isSpace && framesReload == 0) //If frames have reloaded and space is pressed
             {
+                
                 currentHolding.gameObject.GetComponent<IngredientController>().held = false; //Object is no longer held
                 if(tableSelector.TableSelected != null && !tableSelector.currentReverter.isOccupied)
                 {
