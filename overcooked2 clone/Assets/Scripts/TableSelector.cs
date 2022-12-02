@@ -10,6 +10,11 @@ public class TableSelector : MonoBehaviour
     public PlayerController playerController;
     public CircleCollider2D circleCollider;
     public TableReverter currentReverter;
+    public GameObject progressBarTester;
+
+    public float length = 3;
+
+    public bool firstCtrl = true;
     
 
     public float distance;
@@ -81,9 +86,13 @@ public class TableSelector : MonoBehaviour
                 }
                 if(playerController.isCtrl && currentReverter.isCuttingBoard && !_currentIngredient.done)
                 {
+                    
+                    
                     Debug.Log(_currentIngredient.choppiness);
                     _currentIngredient.choppiness ++;
+                    _currentIngredient.ProgressBar.transform.localScale = new Vector3(_currentIngredient.choppiness / 100, .5f, 1);
                 }
+                
             }
         }
         
