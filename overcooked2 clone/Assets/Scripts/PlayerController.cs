@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public TableSelector tableSelector;
     public Rigidbody2D rigidbodyPlayer; //RigidBody to move player
     public GameObject currentHolding; //What object is the player currently holding if any
+    
 
 
     public Quaternion finalRotation;
@@ -25,7 +26,9 @@ public class PlayerController : MonoBehaviour
         Water,
         UI,
         Counter,
-        Ingredient
+        Plate,
+        Ingredient,
+
     }
     public bool isSpace; //Track whether space has been pressed
     public bool isAlt; //Track whether alt has been pressed
@@ -55,13 +58,21 @@ public class PlayerController : MonoBehaviour
             framesReload = (framesReload > 0) ? --framesReload :  0; //Decrement frames
             if (isSpace && framesReload == 0) //If frames have reloaded and space is pressed
             {
-                
                 currentHolding.gameObject.GetComponent<IngredientController>().held = false; //Object is no longer held
-                if(tableSelector.TableSelected != null && !tableSelector.currentReverter.isOccupied)
+                 
+                if (tableSelector.TableSelected != null && !tableSelector.currentReverter.isOccupied)
                 {
                     currentHolding.gameObject.transform.position = tableSelector.TableSelected.transform.position; // place object on selected table's position
                     tableSelector.currentReverter.content = currentHolding.gameObject;
-                    tableSelector.currentReverter.isOccupied = true;
+                    if (currentHolding.gameObject.GetComponent<IngredientController>().isPlate)
+                    {
+                        tableSelector.currentReverter.isOccupied = false;
+                    }
+                    else
+                    {
+                        tableSelector.currentReverter.isOccupied = true;
+                    }
+                    
                 }
                 else
                 {
@@ -103,27 +114,19 @@ public class PlayerController : MonoBehaviour
 
                 }
             }
-        }
-    }
-    #endregion
-    #region Selection Pick Up Method
-    private void pickFromTable()
-    {
-        if (tableSelector.currentReverter.isOccupied && currentHolding == null)
-        {
-            if (isAlt)
+            if (collision.gameObject.layer == (int)Layers.Plate) //Check if object has the layer Ingredient
             {
-                currentHolding = tableSelector.currentReverter.content; //Set current holding to the table content
-                tableSelector.currentReverter.content = null; //reset the table content to null
-                tableSelector.currentReverter.isOccupied = false; //reset the table isOccupied to false
-                tableSelector.TableSelected = null;
+                if (isSpace)
+                {
+                    currentHolding = collision.gameObject; //Set plate holding to collided object
+                    collision.gameObject.GetComponent<IngredientController>().held = true; //Tell that collided object it is being held
+                    collision.gameObject.GetComponent<IngredientController>().master = gameObject; //Tell the collided object who is holding it
 
-                currentHolding.gameObject.GetComponent<IngredientController>().held = true; //Tell that collided object it is being held
-                currentHolding.gameObject.GetComponent<IngredientController>().master = gameObject; //Tell the collided object who is holding it
-
+                }
             }
         }
     }
     #endregion
+    
 
 }

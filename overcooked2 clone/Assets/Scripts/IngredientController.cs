@@ -9,8 +9,12 @@ public class IngredientController : MonoBehaviour
     public bool held; //Is someone holding the ingredient?
     public int choppiness = 0; // How chopped is this ingredient right now?
     public bool done = false; //Is it finished chopping?
+<<<<<<< HEAD
     public bool firstChop = true;
 
+=======
+    public bool isPlate = false;
+>>>>>>> 143a9c6 (Zoidberg's half done plates)
     public GameObject master; //Who is holding the object?
     public BoxCollider2D bc; // this box collider
     public SpriteRenderer spriteRenderer; //this srpite renderer
