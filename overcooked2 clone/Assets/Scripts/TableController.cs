@@ -11,13 +11,17 @@ public class TableController : MonoBehaviour
     
     public GameObject ingredient; //ingredient template goes here
     public GameObject plate; //plate template goes here
-    
+
+    public TableReverter thisTableReverter;
+
+
     private TableSelector _tableSelector; //player's table selector
                                         //note this operates under assumption there's 1 player only 
 
     private void Start()
     {
         _tableSelector = GameObject.FindGameObjectWithTag("Player").GetComponent<TableSelector>(); //get table selector
+        thisTableReverter = gameObject.GetComponent<TableReverter>();
     }
 
     private void Update()
@@ -60,7 +64,7 @@ public class TableController : MonoBehaviour
             }
             else if (tableType == "cutting board")
             {
-
+                thisTableReverter.isCuttingBoard = true;
             }
             else if (tableType == "trash can")
             {
@@ -70,7 +74,7 @@ public class TableController : MonoBehaviour
 
                 }*/
 
-                TableReverter thisTableReverter = gameObject.GetComponent<TableReverter>();
+                
 
                 if (thisTableReverter.isOccupied) //if object gets put "on this table", delete it 
                 {
