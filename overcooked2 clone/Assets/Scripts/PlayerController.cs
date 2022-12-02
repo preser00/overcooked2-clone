@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
     public TableSelector tableSelector;
     public Rigidbody2D rigidbodyPlayer; //RigidBody to move player
     public GameObject currentHolding; //What object is the player currently holding if any
-    
 
+    private AudioSource audioSrc; 
 
     public Quaternion finalRotation;
     public Quaternion toRotation;
@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         tableSelector = GetComponent<TableSelector>();
+        audioSrc = GetComponent<AudioSource>(); 
     }
     #region Input and Updates
     void Update()
@@ -78,7 +79,8 @@ public class PlayerController : MonoBehaviour
                 {
                     currentHolding.gameObject.transform.position = rigidbodyPlayer.position + new Vector2(2, 0); //Move object slightly away from trigger (prevents the player from colldiing with it again)
                 }
-                
+
+                audioSrc.Play(); 
                 currentHolding = null; //Reset current holding to none
                 framesReload = 30; //Reload the frames
             }
@@ -111,6 +113,8 @@ public class PlayerController : MonoBehaviour
                     currentHolding = collision.gameObject; //Set current holding to collided object
                     collision.gameObject.GetComponent<IngredientController>().held = true; //Tell that collided object it is being held
                     collision.gameObject.GetComponent<IngredientController>().master = gameObject; //Tell the collided object who is holding it
+
+                    audioSrc.Play(); 
 
                 }
             }

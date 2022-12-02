@@ -9,12 +9,11 @@ public class IngredientController : MonoBehaviour
     public bool held; //Is someone holding the ingredient?
     public int choppiness = 0; // How chopped is this ingredient right now?
     public bool done = false; //Is it finished chopping?
-<<<<<<< HEAD
+
     public bool firstChop = true;
 
-=======
     public bool isPlate = false;
->>>>>>> 143a9c6 (Zoidberg's half done plates)
+
     public GameObject master; //Who is holding the object?
     public BoxCollider2D bc; // this box collider
     public SpriteRenderer spriteRenderer; //this srpite renderer
@@ -22,9 +21,14 @@ public class IngredientController : MonoBehaviour
     public GameObject ProgressBarPreFab;
     //public Rigidbody2D rb; // this rigid body
 
+    public Sprite[] sprites;
+    public Sprite[] choppedSprites;
+
+    private AudioSource audioSrc; 
+
     void Start()
     {
-        
+        audioSrc = GetComponent<AudioSource>(); 
     }
 
     
@@ -47,14 +51,22 @@ public class IngredientController : MonoBehaviour
             ProgressBar = Instantiate(ProgressBarPreFab, transform);
             ProgressBar.transform.position = gameObject.transform.position + new Vector3(-1, -1, 0);
             firstChop = false;
-            
+
+            audioSrc.Play();
+            audioSrc.loop = true; 
 
         }
         if (choppiness >= 600)
         {
             Debug.Log("Chop completed!");
-            spriteRenderer.color = Color.blue;
+
+            if (ingredientName == "fish") { spriteRenderer.sprite = choppedSprites[0]; }
+            else if (ingredientName == "shrimp") { spriteRenderer.sprite = choppedSprites[1]; }
+
             done = true;
+
+            audioSrc.Stop();
+            audioSrc.loop = false;
         }
         if (done)
         {
