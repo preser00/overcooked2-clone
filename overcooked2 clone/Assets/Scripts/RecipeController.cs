@@ -12,6 +12,7 @@ public class RecipeController : MonoBehaviour
     public GameObject gm; //Game Manager
     public GameObject RecipePreFab; //Recipe PreFab
     public int maxNumTasks = 5; //Max Number of Taaks
+    public Sprite[] recipeSprites; //for visuals: 0 = Fish recipe, 1 = Shrimp recipe 
 
     public List<float> timers = new List<float>(); //Track how long each task has been on the board
 
@@ -74,14 +75,18 @@ public class RecipeController : MonoBehaviour
             if (i+1 == currTasks.Count)
             {
                 GameObject newRecipe = Instantiate(RecipePreFab, T); //Instantiate prefab w/ visuals
+                SpriteRenderer newRecipeRenderer = newRecipe.GetComponent<SpriteRenderer>(); 
                 
                 if (addRecipe.name.Equals("FishRecipe"))
                 {
                     //  ***Change Sprite to Fish***
+                    newRecipeRenderer.sprite = recipeSprites[0]; 
+
                 }
                 else
                 {
                     //  ***Change Sprite to Shrimp***
+                    newRecipeRenderer.sprite = recipeSprites[1]; 
                 }
 
                 visuals.Add(newRecipe);
