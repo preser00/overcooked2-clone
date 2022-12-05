@@ -43,7 +43,8 @@ public class TableController : MonoBehaviour
                 {
                     GameObject newIngredient = Instantiate(ingredient, transform.position + new Vector3(1, 1, 0), Quaternion.identity);
                     IngredientController newIngredientController = newIngredient.GetComponent<IngredientController>(); //get ingredient's IngredientController script
-                    
+                    SpriteRenderer newSpriteRenderer = newIngredient.GetComponent<SpriteRenderer>(); 
+
                     //WIP - if player is currently already holding ingredient, make sure to put the ingredient somewhere it wont clip into a table. can probably be done in playercontroller
 
                     currentPlayerController.currentHolding = newIngredient; //set player's currently holding obj to this new ingredient
@@ -51,6 +52,16 @@ public class TableController : MonoBehaviour
                     newIngredientController.ingredientName = ingredientSpawnerType; //set name to match spawner type's ingredient (fish, shrimp)
                     newIngredientController.held = true; //set the ingredient to being held 
                     newIngredientController.master = _tableSelector.gameObject; //set ingredient's master to the player that selected the table
+
+                    if (ingredientSpawnerType == "fish") //setting sprite for ingredient
+                    {
+                        newSpriteRenderer.sprite = newIngredientController.sprites[0]; 
+                    }
+                    else if(ingredientSpawnerType == "shrimp")
+                    {
+                        newSpriteRenderer.sprite = newIngredientController.sprites[1];
+                    }
+                    else { Debug.Log("Sprite not set");  }
                 }
             }
             else if (tableType == "plate spawner")
@@ -59,7 +70,7 @@ public class TableController : MonoBehaviour
                 {
                     GameObject newPlate = Instantiate(plate, transform.position + new Vector3(1, 1, 0), Quaternion.identity); 
 
-                    //WIP - need player pickup access
+                    //WIP
                 }
             }
             else if (tableType == "cutting board")
@@ -85,7 +96,7 @@ public class TableController : MonoBehaviour
             }
             else if(tableType == "delivery zone")
             {
-                //add to score, remove plate, etc
+                //add to score, remove plate/dish, etc
             }
         }
     }

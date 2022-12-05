@@ -12,6 +12,7 @@ public class RecipeController : MonoBehaviour
     public GameObject gm; //Game Manager
     public GameObject RecipePreFab; //Recipe PreFab
     public int maxNumTasks = 5; //Max Number of Taaks
+    public Sprite[] recipeSprites; //for visuals: 0 = Fish recipe, 1 = Shrimp recipe 
 
     public List<float> timers = new List<float>(); //Track how long each task has been on the board
 
@@ -19,7 +20,7 @@ public class RecipeController : MonoBehaviour
     public int inTimer = 0; //Track the overall game timer
     public bool ranOnce = false; //Sentinel var
 
-    private Vector3 ogSpawnPt = new Vector3(-15, 7, 0); //Where to start spawning from
+    private Vector3 ogSpawnPt = new Vector3(-16, 4.4f, -200); //Where to start spawning from
     public List<Vector3> spawnPoints = new List<Vector3>(); //List of spawn points down the row
 
     public int waitTime = 30;
@@ -27,9 +28,10 @@ public class RecipeController : MonoBehaviour
 
     private void Start()
     {
+
         for (int i = 0; i < maxNumTasks; i++)
         {
-            spawnPoints.Add(ogSpawnPt + new Vector3(3 * i, 7, 0)); //Set spacing between spawns
+            spawnPoints.Add(ogSpawnPt + new Vector3(3 * i, 4.4f, -200)); //Set spacing between spawns
             timers.Add(0); //Init
         }
         
@@ -73,14 +75,18 @@ public class RecipeController : MonoBehaviour
             if (i+1 == currTasks.Count)
             {
                 GameObject newRecipe = Instantiate(RecipePreFab, T); //Instantiate prefab w/ visuals
+                SpriteRenderer newRecipeRenderer = newRecipe.GetComponent<SpriteRenderer>(); 
                 
                 if (addRecipe.name.Equals("FishRecipe"))
                 {
                     //  ***Change Sprite to Fish***
+                    newRecipeRenderer.sprite = recipeSprites[0]; 
+
                 }
                 else
                 {
                     //  ***Change Sprite to Shrimp***
+                    newRecipeRenderer.sprite = recipeSprites[1]; 
                 }
 
                 visuals.Add(newRecipe);
