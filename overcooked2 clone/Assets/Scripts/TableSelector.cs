@@ -13,8 +13,6 @@ public class TableSelector : MonoBehaviour
     public GameObject progressBarTester;
 
     public float length = 3;
-
-    public bool firstCtrl = true;
     
 
     public float distance;
@@ -74,16 +72,31 @@ public class TableSelector : MonoBehaviour
             if (currentReverter.isOccupied && playerController.currentHolding == null)
             {
                 IngredientController _currentIngredient = currentReverter.content.GetComponent<IngredientController>(); // get the ingredient controller of the current reverter
-                if (playerController.isAlt && ((_currentIngredient.choppiness== 0) || (_currentIngredient.done)))
+                PlateController _currentPlate = currentReverter.content.GetComponent<PlateController>();
+                if (playerController.isAlt)
                 {
-                    playerController.currentHolding = currentReverter.content; //Set current holding to the table content
-                    currentReverter.content = null; //reset the table content to null
-                    currentReverter.isOccupied = false; //reset the table isOccupied to false
+                    if (_currentIngredient == null)
+                    {
+                        playerController.currentHolding = currentReverter.content; //Set current holding to the table content
+                        currentReverter.content = null; //reset the table content to null
+                        currentReverter.isOccupied = false; //reset the table isOccupied to false
 
-                    playerController.currentHolding.gameObject.GetComponent<IngredientController>().held = true; //Tell that collided object it is being held
-                    playerController.currentHolding.gameObject.GetComponent<IngredientController>().master = gameObject; //Tell the collided object who is holding it
+                        playerController.currentHolding.gameObject.GetComponent<PlateController>().held = true; //Tell that collided object it is being held
+                        playerController.currentHolding.gameObject.GetComponent<PlateController>().master = gameObject;
+                    }
+                    else if (_currentIngredient.choppiness == 0 || _currentIngredient.done)
+                    {
+                        playerController.currentHolding = currentReverter.content; //Set current holding to the table content
+                        currentReverter.content = null; //reset the table content to null
+                        currentReverter.isOccupied = false; //reset the table isOccupied to false
+
+                        playerController.currentHolding.gameObject.GetComponent<IngredientController>().held = true; //Tell that collided object it is being held
+                        playerController.currentHolding.gameObject.GetComponent<IngredientController>().master = gameObject; //Tell the collided object who is holding it
+                    }
+                    
 
                 }
+                
                 if(playerController.isCtrl && currentReverter.isCuttingBoard && !_currentIngredient.done)
                 {
                     
@@ -98,15 +111,13 @@ public class TableSelector : MonoBehaviour
         
         else
         { //No counters selected
-
-           
-            currentReverter.isSelectedPlayer = false;
+            if(currentReverter != null) currentReverter.isSelectedPlayer = false;
             TableSelected = null;
             isSelected = false;
         }
 
-        Debug.Log("isOccupied = " + currentReverter.isOccupied);
-        Debug.Log("currentHolding = " + playerController.currentHolding);
+        //Debug.Log("isOccupied = " + currentReverter.isOccupied);
+        //Debug.Log("currentHolding = " + playerController.currentHolding);
     }
 
 }

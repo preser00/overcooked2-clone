@@ -59,21 +59,20 @@ public class PlayerController : MonoBehaviour
             framesReload = (framesReload > 0) ? --framesReload :  0; //Decrement frames
             if (isSpace && framesReload == 0) //If frames have reloaded and space is pressed
             {
-                currentHolding.gameObject.GetComponent<IngredientController>().held = false; //Object is no longer held
-                 
-                if (tableSelector.TableSelected != null && !tableSelector.currentReverter.isOccupied)
+                if(currentHolding.gameObject.GetComponent<IngredientController>() != null) //Decide if holding ingredient or plate
+                {
+                    currentHolding.gameObject.GetComponent<IngredientController>().held = false; //ingredient is no longer held
+                }
+                if (currentHolding.gameObject.GetComponent<PlateController>() != null) //Decide if holding plate
+                {
+                    currentHolding.gameObject.GetComponent<PlateController>().held = false; //plate is no longer held
+                }
+
+                if (tableSelector.TableSelected != null && !tableSelector.currentReverter.isOccupied) //table put down method
                 {
                     currentHolding.gameObject.transform.position = tableSelector.TableSelected.transform.position; // place object on selected table's position
                     tableSelector.currentReverter.content = currentHolding.gameObject;
-                    if (currentHolding.gameObject.GetComponent<IngredientController>().isPlate)
-                    {
-                        tableSelector.currentReverter.isOccupied = false;
-                    }
-                    else
-                    {
-                        tableSelector.currentReverter.isOccupied = true;
-                    }
-                    
+                    tableSelector.currentReverter.isOccupied = true;
                 }
                 else
                 {
@@ -82,8 +81,10 @@ public class PlayerController : MonoBehaviour
 
                 audioSrc.Play(); 
                 currentHolding = null; //Reset current holding to none
+
                 framesReload = 30; //Reload the frames
             }
+
         }
         #endregion
         
@@ -118,13 +119,13 @@ public class PlayerController : MonoBehaviour
 
                 }
             }
-            if (collision.gameObject.layer == (int)Layers.Plate) //Check if object has the layer Ingredient
+            if (collision.gameObject.layer == (int)Layers.Plate && currentHolding == null) //Check if object has the layer Ingredient
             {
                 if (isSpace)
                 {
                     currentHolding = collision.gameObject; //Set plate holding to collided object
-                    collision.gameObject.GetComponent<IngredientController>().held = true; //Tell that collided object it is being held
-                    collision.gameObject.GetComponent<IngredientController>().master = gameObject; //Tell the collided object who is holding it
+                    collision.gameObject.GetComponent<PlateController>().held = true; //Tell that collided object it is being held
+                    collision.gameObject.GetComponent<PlateController>().master = gameObject; //Tell the collided object who is holding it
 
                 }
             }

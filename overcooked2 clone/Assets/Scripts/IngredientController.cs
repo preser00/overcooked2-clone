@@ -11,7 +11,7 @@ public class IngredientController : MonoBehaviour
     public bool done = false; //Is it finished chopping?
 
     public bool firstChop = true;
-    public bool isPlate = false;
+    
 
     public GameObject master; //Who is holding the object?
     public BoxCollider2D bc; // this box collider
