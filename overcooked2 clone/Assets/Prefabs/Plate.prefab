@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4761384790161993931}
   - component: {fileID: -255525532192183888}
-  - component: {fileID: -5702672669700439498}
-  - component: {fileID: -6483279495361139820}
+  - component: {fileID: 1823550769702723387}
+  - component: {fileID: 4479986467059665123}
   m_Layer: 7
   m_Name: Plate
   m_TagString: Interactable
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 276331137665608271}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 1383955041
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0.12388747, g: 0.754717, b: 0.16653907, a: 1}
+  m_Sprite: {fileID: -985758842, guid: e3cb62e71d8e0ec49bff7b37f28cbccc, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -86,8 +86,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &-5702672669700439498
-BoxCollider2D:
+--- !u!58 &1823550769702723387
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -100,19 +100,9 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &-6483279495361139820
+  m_Radius: 0.8
+--- !u!114 &4479986467059665123
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,14 +111,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 276331137665608271}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7449595a3ab724bc88a4e2e8a4983049, type: 3}
+  m_Script: {fileID: 11500000, guid: 44cdb23e8040ea444a6e6789aabdc184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredientName: 
+  plateName: 
   held: 0
-  choppiness: 0
-  done: 0
-  isPlate: 1
+  cleanliness: 0
   master: {fileID: 0}
-  bc: {fileID: -5702672669700439498}
+  cc: {fileID: 1823550769702723387}
   spriteRenderer: {fileID: -255525532192183888}
+  content: {fileID: 0}
+  sprites: []
+  dirtySprites: []
