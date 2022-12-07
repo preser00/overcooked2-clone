@@ -80,10 +80,15 @@ public class PlayerController : MonoBehaviour
                     }
                     else if(tableSelector.currentReverter.content.GetComponent<PlateController>().content == null && currentHolding.GetComponent<IngredientController>().done)//table put down when plate is empty and ingredient chopped
                     {
+
                         currentHolding.transform.position = tableSelector.TableSelected.transform.position;
-                        currentHolding.GetComponent<IngredientController>().dished = true;
+                        currentHolding.GetComponent<IngredientController>().dished = true; //the ingredients are now part of a dish 
                         currentHolding.GetComponent<IngredientController>().master = tableSelector.currentReverter.content;
-                        tableSelector.currentReverter.content.GetComponent<PlateController>().content = currentHolding;
+
+                        PlateController currentPlateController = tableSelector.currentReverter.content.GetComponent<PlateController>(); 
+                        currentPlateController.content = currentHolding;
+                        currentPlateController.ingredientOnPlate = currentHolding.GetComponent<IngredientController>(); //plate can now track the ingredient held on it  
+
                     } 
                 }
                 else

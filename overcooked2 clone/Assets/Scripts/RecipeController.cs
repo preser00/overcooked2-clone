@@ -20,7 +20,7 @@ public class RecipeController : MonoBehaviour
     public int inTimer = 0; //Track the overall game timer
     public bool ranOnce = false; //Sentinel var
 
-    private Vector3 ogSpawnPt = new Vector3(-16, 4.4f, -200); //Where to start spawning from
+    private Vector3 ogSpawnPt = new Vector3(-16, 4.4f, 0); //Where to start spawning from
     public List<Vector3> spawnPoints = new List<Vector3>(); //List of spawn points down the row
 
     public int waitTime = 30;
@@ -31,7 +31,7 @@ public class RecipeController : MonoBehaviour
 
         for (int i = 0; i < maxNumTasks; i++)
         {
-            spawnPoints.Add(ogSpawnPt + new Vector3(3 * i, 4.4f, -200)); //Set spacing between spawns
+            spawnPoints.Add(ogSpawnPt + new Vector3(3 * i, 4.4f, 0)); //Set spacing between spawns
             timers.Add(0); //Init
         }
         
@@ -61,13 +61,16 @@ public class RecipeController : MonoBehaviour
     {
         int index = Random.Range(0, 2); //Random choice between shrimp and fish
         Recipe obj = ScriptableObject.CreateInstance("Recipe") as Recipe; //Make scriptable object
-        if (index == 0) { obj.initValues("FishRecipe", "Fish", "Chop"); } //Give object traits
-        else { obj.initValues("ShrimpRecipe", "Shrimp", "Chop");  }
+        Debug.Log(index); 
+
+        if (index == 0) { obj.initValues("FishRecipe", "fish", "Chop"); } //Give object traits
+        else { obj.initValues("ShrimpRecipe", "shrimp", "Chop");  }
+
         currTasks.Add(obj); //Add task to current tasks
-        GenerateVisuals(obj);
+        GenerateVisuals(obj, index);
     }
     
-    void GenerateVisuals(Recipe addRecipe)
+    void GenerateVisuals(Recipe addRecipe, int index)
     {
         for (int i = 0; i < currTasks.Count; i++)
         {
@@ -77,7 +80,7 @@ public class RecipeController : MonoBehaviour
                 GameObject newRecipe = Instantiate(RecipePreFab, T); //Instantiate prefab w/ visuals
                 SpriteRenderer newRecipeRenderer = newRecipe.GetComponent<SpriteRenderer>(); 
                 
-                if (addRecipe.name.Equals("FishRecipe"))
+                if(index == 0)//if (addRecipe.name.Equals("FishRecipe")) 
                 {
                     //  ***Change Sprite to Fish***
                     newRecipeRenderer.sprite = recipeSprites[0]; 
@@ -93,6 +96,21 @@ public class RecipeController : MonoBehaviour
             }
             
             visuals[i].transform.position = spawnPoints[i]; //Move prefabs
+        }
+    }
+
+    public void RemoveTask(int i) //i = index to remove 
+    {
+        currTasks.RemoveAt(i); //remove task from recipe manager 
+        visuals.RemoveAt(i);
+        timers.RemoveAt(i);
+
+        //ranOnce = false; //idk if this is what's causing failed spawning post-removal 
+
+        
+        for(int j = 0; j < maxNumTasks; j++) //adjust visuals 
+        {
+            visuals[j].transform.position = spawnPoints[j]; 
         }
     }
 }

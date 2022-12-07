@@ -13,10 +13,11 @@ public class GameManager : MonoBehaviour
 
     //delivery streak timer
     public float streakTimeRemaining;
-    public bool streakTimerRunning; 
+    public bool streakTimerRunning;
 
     private void Start()
     {
+
         timeRemaining = 150f; //overcooked2 1-1 timer starts at 2:30
         timerRunning = true;
 
@@ -47,7 +48,31 @@ public class GameManager : MonoBehaviour
 
         #endregion
 
-        Debug.Log(timerDisplay); 
+        //Debug.Log(timerDisplay); 
 
     }
+
+ /*   public void CheckDish(PlateController dish)
+    {
+        RecipeController recipeManager = GetComponent<RecipeController>(); //get recipecontroller
+
+        if(dish.ingredientOnPlate != null) //if the dish has ingredients on it 
+        {
+            for(int i = 0; i < recipeManager.currTasks.Count; i++) //go through the current recipes 
+            {
+                string ingredientRequired = recipeManager.currTasks[i].ingredientName; //look at what ingredient is required for each recipe
+
+                if(dish.ingredientOnPlate.ingredientName == ingredientRequired) //if the ingredient required matches ingredient on plate, 
+                {
+                    score += 30; //add to score 
+                    _audioSrc.Play(); 
+
+                    Destroy(dish.content); //destroy dish 
+                    Destroy(dish.gameObject);
+
+                    recipeManager.currTasks.RemoveAt(i); //remove task from list 
+                }
+            }
+        }
+    }*/
 }

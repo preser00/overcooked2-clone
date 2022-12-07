@@ -7,9 +7,10 @@ public class IngredientController : MonoBehaviour
     //  ATTRIBUTES  //
     public string ingredientName; //Name of the ingredient
     public bool held; //Is someone holding the ingredient?
-    public bool dished;
+
     public int choppiness = 0; // How chopped is this ingredient right now?
     public bool done = false; //Is it finished chopping?
+    public bool dished; //is the ingredient on a dish 
 
     public bool firstChop = true;
     
@@ -62,7 +63,7 @@ public class IngredientController : MonoBehaviour
             audioSrc.loop = true; 
 
         }
-        if (choppiness >= 600)
+        if (choppiness >= 300)
         {
             Debug.Log("Chop completed!");
 

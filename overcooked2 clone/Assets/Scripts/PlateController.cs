@@ -19,12 +19,7 @@ public class PlateController : MonoBehaviour
     public Sprite[] sprites;
     public Sprite[] dirtySprites;
 
-    private AudioSource audioSrc;
-
-    void Start()
-    {
-        audioSrc = GetComponent<AudioSource>();
-    }
+    public IngredientController ingredientOnPlate; 
 
 
     void Update()
