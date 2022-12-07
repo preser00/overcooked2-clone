@@ -16,18 +16,21 @@ public class TableController : MonoBehaviour
 
 
     private TableSelector _tableSelector; //player's table selector
-                                        //note this operates under assumption there's 1 player only 
+                                          //note this operates under assumption there's 1 player only 
+    private GameManager _gm;
+    private AudioSource _audioSrc;
 
     private void Start()
     {
         _tableSelector = GameObject.FindGameObjectWithTag("Player").GetComponent<TableSelector>(); //get table selector
-        thisTableReverter = gameObject.GetComponent<TableReverter>();
+        _gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>(); 
+
+        thisTableReverter = GetComponent<TableReverter>();
+        _audioSrc = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
-        //Debug.Log(_tableSelector.TableSelected);
-
         OnSelection(); 
     }
 
@@ -66,11 +69,14 @@ public class TableController : MonoBehaviour
             }
             else if (tableType == "plate spawner")
             {
-                if (Input.GetKey(KeyCode.Space))
+                if (Input.GetKeyUp(KeyCode.Space))
                 {
-                    GameObject newPlate = Instantiate(plate, transform.position + new Vector3(1, 1, 0), Quaternion.identity); 
+                    GameObject newPlate = Instantiate(plate, transform.position + new Vector3(-2, 0, 0), Quaternion.identity);
+                    PlateController newPlateController = newPlate.GetComponent<PlateController>();
 
-                    //WIP
+                    currentPlayerController.currentHolding = newPlate; 
+                    newPlateController.held = true;
+                    newPlateController.master = _tableSelector.gameObject;
                 }
             }
             else if (tableType == "cutting board")
@@ -79,16 +85,15 @@ public class TableController : MonoBehaviour
             }
             else if (tableType == "trash can")
             {
-                /*if(Input.GetKeyUp(KeyCode.Space) && currentPlayerController.currentHolding.layer == 7) //if player is holding an ingredient (layer = 7) & presses space
+
+                if (thisTableReverter.isOccupied) //if object gets put on the trash can, delete it 
                 {
-                    Destroy(currentPlayerController.currentHolding); //destroy ingredient 
+                    if(thisTableReverter.content.GetComponent<PlateController>() != null) //if it's a plate, destroy the ingredient on it as well 
+                    {
+                        PlateController thisPlateController = thisTableReverter.content.GetComponent<PlateController>();
+                        Destroy(thisPlateController.content); 
+                    }
 
-                }*/
-
-                
-
-                if (thisTableReverter.isOccupied) //if object gets put "on this table", delete it 
-                {
                     Destroy(thisTableReverter.content);
                     thisTableReverter.isOccupied = false;
 
@@ -96,8 +101,82 @@ public class TableController : MonoBehaviour
             }
             else if(tableType == "delivery zone")
             {
-                //add to score, remove plate/dish, etc
+                if (thisTableReverter.isOccupied) 
+                {
+                    PlateController currentPlate = thisTableReverter.content.GetComponent<PlateController>(); 
+
+                    if(currentPlate != null) //if there is a plate on this table, check what's on the plate 
+                    {
+                        //_gm.CheckDish(currentPlate);
+                        Debug.Log("checking plate");
+
+                        RecipeController recipeManager = _gm.GetComponent<RecipeController>(); //get recipecontroller
+                        bool once = false; 
+                        
+                        if (currentPlate.ingredientOnPlate != null) //if the dish has ingredients on it 
+                        {
+                            //StartCoroutine("CheckDishDelivery(recipeManager, currentPlate)");
+
+                            
+                                for (int i = 0; i < recipeManager.currTasks.Count; i++) //go through the current recipes 
+                                {
+                                    string ingredientRequired = recipeManager.currTasks[i].ingredientName; //look at what ingredient is required for each recipe
+
+                                    if (currentPlate.ingredientOnPlate.ingredientName == ingredientRequired) //if the ingredient required matches ingredient on plate, 
+                                    {
+                                        if(once == false) //run all these only once 
+                                        {
+                                            _gm.score += 30; //add to score 
+                                            _audioSrc.Play();
+
+                                            Destroy(currentPlate.content); //destroy dish 
+                                            Destroy(currentPlate.gameObject);
+
+                                            thisTableReverter.isOccupied = false;
+
+                                            recipeManager.RemoveTask(i);
+
+                                            once = true; 
+                                        }
+
+                                        return; //exit loop 
+
+                                    }
+                                }
+                            
+                        }
+                    }
+                }
             }
         }
     }
+
+    /*tried to set up a coroutine to slow down the for loop but didn't really get it. also i realized midway i don't think its necessary 
+    IEnumerator CheckDishDelivery(RecipeController recipeManager, PlateController currentPlate)
+    {
+        for (int i = 0; i < recipeManager.currTasks.Count; i++) //go through the current recipes 
+        {
+            string ingredientRequired = recipeManager.currTasks[i].ingredientName; //look at what ingredient is required for each recipe
+            Debug.Log(ingredientRequired);
+
+            if (currentPlate.ingredientOnPlate.ingredientName == ingredientRequired) //if the ingredient required matches ingredient on plate, 
+            {
+                    _gm.score += 30; //add to score 
+                    _audioSrc.Play();
+
+                    Destroy(currentPlate.content); //destroy dish 
+                    Destroy(currentPlate.gameObject);
+
+                    thisTableReverter.isOccupied = false;
+
+                    recipeManager.RemoveTask(i);
+
+
+                yield return null; //exit loop 
+
+            }
+
+            yield return new WaitForSeconds(.2f);
+        }
+    }*/
 }

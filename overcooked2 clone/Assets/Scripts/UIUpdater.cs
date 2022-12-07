@@ -18,10 +18,9 @@ public class UIUpdater : MonoBehaviour
 
     private void Update()
     {
-        //commented for now until textmesh is set up 
         if(displayType == "score")
         {
-            //textmesh.text = gm.score.ToString();
+            textmesh.text = "Score: " + gm.score.ToString();
         }
         else if(displayType == "timer")
         {
