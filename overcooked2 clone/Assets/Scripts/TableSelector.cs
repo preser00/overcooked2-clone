@@ -51,8 +51,8 @@ public class TableSelector : MonoBehaviour
        
         RaycastHit2D hit = Physics2D.Raycast(circleCollider.bounds.center, direction, circleCollider.bounds.extents.y+offset, layerCounter);
         Debug.DrawRay(circleCollider.bounds.center , direction * ( circleCollider.bounds.extents.y+offset), Color.red);
-        
-        
+
+
         if (hit)
         {
             if (isSelected && TableSelected.transform.gameObject != hit.transform.gameObject) //Something different is selected
@@ -69,49 +69,63 @@ public class TableSelector : MonoBehaviour
                 currentReverter.isSelectedPlayer = true;
                 isSelected = true;
             }
-            if (currentReverter.isOccupied && playerController.currentHolding == null)
+            if (currentReverter.isOccupied)
             {
                 IngredientController _currentIngredient = currentReverter.content.GetComponent<IngredientController>(); // get the ingredient controller of the current reverter
                 PlateController _currentPlate = currentReverter.content.GetComponent<PlateController>();
-                if (playerController.isAlt)
+                if (playerController.currentHolding == null)
                 {
-                    if (_currentIngredient == null)
+                    if (playerController.isAlt)
                     {
-                        playerController.currentHolding = currentReverter.content; //Set current holding to the table content
+                        if (_currentIngredient == null)
+                        {
+                            playerController.currentHolding = currentReverter.content; //Set current holding to the table content
+                            currentReverter.content = null; //reset the table content to null
+                            currentReverter.isOccupied = false; //reset the table isOccupied to false
+
+                            playerController.currentHolding.GetComponent<PlateController>().held = true; //Tell that collided object it is being held
+                            playerController.currentHolding.GetComponent<PlateController>().master = gameObject;
+                        }
+                        else if (_currentIngredient.choppiness == 0 || _currentIngredient.done)
+                        {
+                            playerController.currentHolding = currentReverter.content; //Set current holding to the table content
+                            currentReverter.content = null; //reset the table content to null
+                            currentReverter.isOccupied = false; //reset the table isOccupied to false
+
+                            playerController.currentHolding.GetComponent<IngredientController>().held = true; //Tell that collided object it is being held
+                            playerController.currentHolding.GetComponent<IngredientController>().master = gameObject; //Tell the collided object who is holding it
+                        }
+
+
+                    }
+
+                    if (playerController.isCtrl && currentReverter.isCuttingBoard && !_currentIngredient.done)
+                    {
+                        Debug.Log(_currentIngredient.choppiness);
+                        _currentIngredient.choppiness++;
+                        _currentIngredient.ProgressBar.transform.localScale = new Vector3(_currentIngredient.choppiness / 100, .5f, 1);
+                    }
+
+                }else if (playerController.currentHolding.GetComponent<PlateController>() != null) // if player is holding a plate
+                {
+                    if (playerController.isAlt && playerController.currentHolding.GetComponent<PlateController>().content == null && _currentIngredient.done) //if the plate is empty and the ingredients are chopped
+                    {
+                        playerController.currentHolding.GetComponent<PlateController>().content = currentReverter.content; //pick up ingredient into the plate
+                        _currentIngredient.dished = true; //ingredient is plated (do this before removing it from the table
+                        _currentIngredient.master = playerController.currentHolding; //ingredient's master is the plate
+
                         currentReverter.content = null; //reset the table content to null
                         currentReverter.isOccupied = false; //reset the table isOccupied to false
 
-                        playerController.currentHolding.gameObject.GetComponent<PlateController>().held = true; //Tell that collided object it is being held
-                        playerController.currentHolding.gameObject.GetComponent<PlateController>().master = gameObject;
-                    }
-                    else if (_currentIngredient.choppiness == 0 || _currentIngredient.done)
-                    {
-                        playerController.currentHolding = currentReverter.content; //Set current holding to the table content
-                        currentReverter.content = null; //reset the table content to null
-                        currentReverter.isOccupied = false; //reset the table isOccupied to false
 
-                        playerController.currentHolding.gameObject.GetComponent<IngredientController>().held = true; //Tell that collided object it is being held
-                        playerController.currentHolding.gameObject.GetComponent<IngredientController>().master = gameObject; //Tell the collided object who is holding it
                     }
-                    
-
                 }
-                
-                if(playerController.isCtrl && currentReverter.isCuttingBoard && !_currentIngredient.done)
-                {
-                    
-                    
-                    Debug.Log(_currentIngredient.choppiness);
-                    _currentIngredient.choppiness ++;
-                    _currentIngredient.ProgressBar.transform.localScale = new Vector3(_currentIngredient.choppiness / 100, .5f, 1);
-                }
-                
             }
         }
-        
+
         else
         { //No counters selected
-            if(currentReverter != null) currentReverter.isSelectedPlayer = false;
+            if (currentReverter != null) currentReverter.isSelectedPlayer = false;
             TableSelected = null;
             isSelected = false;
         }

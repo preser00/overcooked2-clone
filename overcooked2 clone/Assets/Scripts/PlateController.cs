@@ -47,4 +47,5 @@ public class PlateController : MonoBehaviour
     {
         transform.position = master.transform.position + new Vector3(1, 1, 0);
     }
+    
 }

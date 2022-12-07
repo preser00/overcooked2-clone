@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
         isSpace = Input.GetKey(KeyCode.Space); //Get space bar input
         isAlt = Input.GetKey(KeyCode.LeftAlt); //Get alt key input
         isCtrl = Input.GetKey(KeyCode.LeftControl); //Get Ctrl key input
+        
+        
     }
     #endregion
     private void FixedUpdate()
@@ -59,20 +61,30 @@ public class PlayerController : MonoBehaviour
             framesReload = (framesReload > 0) ? --framesReload :  0; //Decrement frames
             if (isSpace && framesReload == 0) //If frames have reloaded and space is pressed
             {
-                if(currentHolding.gameObject.GetComponent<IngredientController>() != null) //Decide if holding ingredient or plate
+                if(currentHolding.GetComponent<IngredientController>() != null) //Decide if holding ingredient or plate
                 {
-                    currentHolding.gameObject.GetComponent<IngredientController>().held = false; //ingredient is no longer held
+                    currentHolding.GetComponent<IngredientController>().held = false; //ingredient is no longer held
                 }
-                if (currentHolding.gameObject.GetComponent<PlateController>() != null) //Decide if holding plate
+                if (currentHolding.GetComponent<PlateController>() != null) //Decide if holding plate
                 {
-                    currentHolding.gameObject.GetComponent<PlateController>().held = false; //plate is no longer held
+                    currentHolding.GetComponent<PlateController>().held = false; //plate is no longer held
                 }
 
-                if (tableSelector.TableSelected != null && !tableSelector.currentReverter.isOccupied) //table put down method
+                if (tableSelector.TableSelected != null)
                 {
-                    currentHolding.gameObject.transform.position = tableSelector.TableSelected.transform.position; // place object on selected table's position
-                    tableSelector.currentReverter.content = currentHolding.gameObject;
-                    tableSelector.currentReverter.isOccupied = true;
+                    if (!tableSelector.currentReverter.isOccupied) //table put down method when table is empty
+                    {
+                        currentHolding.transform.position = tableSelector.TableSelected.transform.position; // place object on selected table's position
+                        tableSelector.currentReverter.content = currentHolding;
+                        tableSelector.currentReverter.isOccupied = true;
+                    }
+                    else if(tableSelector.currentReverter.content.GetComponent<PlateController>().content == null && currentHolding.GetComponent<IngredientController>().done)//table put down when plate is empty and ingredient chopped
+                    {
+                        currentHolding.transform.position = tableSelector.TableSelected.transform.position;
+                        currentHolding.GetComponent<IngredientController>().dished = true;
+                        currentHolding.GetComponent<IngredientController>().master = tableSelector.currentReverter.content;
+                        tableSelector.currentReverter.content.GetComponent<PlateController>().content = currentHolding;
+                    } 
                 }
                 else
                 {
