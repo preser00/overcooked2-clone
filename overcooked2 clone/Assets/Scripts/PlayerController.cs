@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
         isSpace = Input.GetKey(KeyCode.Space); //Get space bar input
         isAlt = Input.GetKey(KeyCode.LeftAlt); //Get alt key input
         isCtrl = Input.GetKey(KeyCode.LeftControl); //Get Ctrl key input
+        
+        
     }
     #endregion
     private void FixedUpdate()
@@ -59,21 +61,30 @@ public class PlayerController : MonoBehaviour
             framesReload = (framesReload > 0) ? --framesReload :  0; //Decrement frames
             if (isSpace && framesReload == 0) //If frames have reloaded and space is pressed
             {
-                currentHolding.gameObject.GetComponent<IngredientController>().held = false; //Object is no longer held
-                 
-                if (tableSelector.TableSelected != null && !tableSelector.currentReverter.isOccupied)
+                if(currentHolding.GetComponent<IngredientController>() != null) //Decide if holding ingredient or plate
                 {
-                    currentHolding.gameObject.transform.position = tableSelector.TableSelected.transform.position; // place object on selected table's position
-                    tableSelector.currentReverter.content = currentHolding.gameObject;
-                    if (currentHolding.gameObject.GetComponent<IngredientController>().isPlate)
+                    currentHolding.GetComponent<IngredientController>().held = false; //ingredient is no longer held
+                }
+                if (currentHolding.GetComponent<PlateController>() != null) //Decide if holding plate
+                {
+                    currentHolding.GetComponent<PlateController>().held = false; //plate is no longer held
+                }
+
+                if (tableSelector.TableSelected != null)
+                {
+                    if (!tableSelector.currentReverter.isOccupied) //table put down method when table is empty
                     {
-                        tableSelector.currentReverter.isOccupied = false;
-                    }
-                    else
-                    {
+                        currentHolding.transform.position = tableSelector.TableSelected.transform.position; // place object on selected table's position
+                        tableSelector.currentReverter.content = currentHolding;
                         tableSelector.currentReverter.isOccupied = true;
                     }
-                    
+                    else if(tableSelector.currentReverter.content.GetComponent<PlateController>().content == null && currentHolding.GetComponent<IngredientController>().done)//table put down when plate is empty and ingredient chopped
+                    {
+                        currentHolding.transform.position = tableSelector.TableSelected.transform.position;
+                        currentHolding.GetComponent<IngredientController>().dished = true;
+                        currentHolding.GetComponent<IngredientController>().master = tableSelector.currentReverter.content;
+                        tableSelector.currentReverter.content.GetComponent<PlateController>().content = currentHolding;
+                    } 
                 }
                 else
                 {
@@ -82,8 +93,10 @@ public class PlayerController : MonoBehaviour
 
                 audioSrc.Play(); 
                 currentHolding = null; //Reset current holding to none
+
                 framesReload = 30; //Reload the frames
             }
+
         }
         #endregion
         
@@ -118,13 +131,13 @@ public class PlayerController : MonoBehaviour
 
                 }
             }
-            if (collision.gameObject.layer == (int)Layers.Plate) //Check if object has the layer Ingredient
+            if (collision.gameObject.layer == (int)Layers.Plate && currentHolding == null) //Check if object has the layer Ingredient
             {
                 if (isSpace)
                 {
                     currentHolding = collision.gameObject; //Set plate holding to collided object
-                    collision.gameObject.GetComponent<IngredientController>().held = true; //Tell that collided object it is being held
-                    collision.gameObject.GetComponent<IngredientController>().master = gameObject; //Tell the collided object who is holding it
+                    collision.gameObject.GetComponent<PlateController>().held = true; //Tell that collided object it is being held
+                    collision.gameObject.GetComponent<PlateController>().master = gameObject; //Tell the collided object who is holding it
 
                 }
             }
