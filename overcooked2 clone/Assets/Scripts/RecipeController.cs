@@ -101,14 +101,15 @@ public class RecipeController : MonoBehaviour
 
     public void RemoveTask(int i) //i = index to remove 
     {
+        Debug.Log(i);
         currTasks.RemoveAt(i); //remove task from recipe manager 
         visuals.RemoveAt(i);
-        timers.RemoveAt(i);
+        //timers.RemoveAt(i);
 
-        //ranOnce = false; //idk if this is what's causing failed spawning post-removal 
+        ranOnce = false; //idk if this is what's causing failed spawning post-removal 
 
         
-        for(int j = 0; j < maxNumTasks; j++) //adjust visuals 
+        for(int j = 0; j < visuals.Count; j++) //adjust visuals 
         {
             visuals[j].transform.position = spawnPoints[j]; 
         }
