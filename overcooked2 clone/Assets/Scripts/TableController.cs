@@ -122,9 +122,9 @@ public class TableController : MonoBehaviour
                                 {
                                     string ingredientRequired = recipeManager.currTasks[i].ingredientName; //look at what ingredient is required for each recipe
 
-                                    if (currentPlate.ingredientOnPlate.ingredientName == ingredientRequired) //if the ingredient required matches ingredient on plate, 
+                                    if (currentPlate.ingredientOnPlate.ingredientName.Equals(ingredientRequired)) //if the ingredient required matches ingredient on plate, 
                                     {
-                                        if(once == false) //run all these only once 
+                                        if(!once) //run all these only once 
                                         {
                                             _gm.score += 30; //add to score 
                                             _audioSrc.Play();
@@ -134,12 +134,12 @@ public class TableController : MonoBehaviour
 
                                             thisTableReverter.isOccupied = false;
 
-                                            recipeManager.RemoveTask(i);
+                                            recipeManager.RemoveTask(i); //**where is this i coming from**//
 
                                             once = true; 
                                         }
 
-                                        return; //exit loop 
+                                        break; //exit loop 
 
                                     }
                                 }
